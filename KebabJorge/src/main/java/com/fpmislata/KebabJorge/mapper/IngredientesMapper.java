@@ -44,6 +44,7 @@ public interface IngredientesMapper {
         return ProveedorMapper.mapper.toProveedorDetailWeb(proveedor);
     }
 
+    @Mapping(target = "proveedorEntity", expression = "java(ProveedorMapper.mapper.toProveedorEntity(ingredientes.getProveedor()))")
     IngredientesEntity toIngredientesEntity (Ingredientes ingredientes);
 
     @Mapping(target = "proveedor", ignore = true)

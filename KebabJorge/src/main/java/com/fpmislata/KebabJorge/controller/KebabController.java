@@ -69,6 +69,7 @@ public class KebabController {
         Kebab kebab = KebabMapper.mapper.toKebab(kebabUpdateWEB);
         kebab.setKebabId(kebabId);
         kebabService.updateKebabById(kebab, kebabUpdateWEB.getIngredientesIdWeb());
-        return new Response(kebab);
+        KebabDetailWeb kebabDetailWeb = KebabMapper.mapper.toKebabDetailWeb(kebab);
+        return new Response(kebabDetailWeb);
     }
 }

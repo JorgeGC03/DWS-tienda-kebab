@@ -45,8 +45,8 @@ public class ProveedorController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("")
-    public Proveedor insertProveedor(@RequestBody ProveedorCreateWeb proveedorCreateWeb) {
-        return proveedorService.insertProveedor(ProveedorMapper.mapper.toProveedor(proveedorCreateWeb));
+    public Response insertProveedor(@RequestBody ProveedorCreateWeb proveedorCreateWeb) {
+        return new Response(proveedorService.insertProveedor(ProveedorMapper.mapper.toProveedor(proveedorCreateWeb)));
     }
 
     @ResponseStatus(HttpStatus.ACCEPTED)
@@ -57,8 +57,8 @@ public class ProveedorController {
 
     @ResponseStatus(HttpStatus.ACCEPTED)
     @PutMapping("/{id}")
-    public Proveedor updateProveedor(@PathVariable("id") int proveedorId, @RequestBody ProveedorUpdateWeb proveedorUpdateWeb){
-    Proveedor proveedor = ProveedorMapper.mapper.toProveedor(proveedorUpdateWeb);
-    return proveedorService.updateProveedorById(ProveedorMapper.mapper.toProveedor(proveedorUpdateWeb),proveedorId);
+    public Response updateProveedor(@PathVariable("id") int proveedorId, @RequestBody ProveedorUpdateWeb proveedorUpdateWeb){
+    ProveedorMapper.mapper.toProveedor(proveedorUpdateWeb);
+    return new Response(proveedorService.updateProveedorById(ProveedorMapper.mapper.toProveedor(proveedorUpdateWeb),proveedorId));
     }
 }

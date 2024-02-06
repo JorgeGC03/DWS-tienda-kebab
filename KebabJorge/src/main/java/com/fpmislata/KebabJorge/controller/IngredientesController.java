@@ -3,6 +3,7 @@ package com.fpmislata.KebabJorge.controller;
 import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesCreateWeb;
 import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesDetailWeb;
 import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesListWeb;
+import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesUpdateWeb;
 import com.fpmislata.KebabJorge.domain.entity.Ingredientes;
 import com.fpmislata.KebabJorge.domain.service.IngredientesService;
 import com.fpmislata.KebabJorge.http_response.Response;
@@ -47,6 +48,21 @@ public class IngredientesController {
     public Response insertIngrediente(@RequestBody IngredientesCreateWeb ingredientesCreateWeb){
         IngredientesDetailWeb ingredientesDetailWeb = IngredientesMapper.mapper.toIngredientesDetailWeb(ingredientesService.insertIngrediente(IngredientesMapper.mapper.toIngredientes(ingredientesCreateWeb), ingredientesCreateWeb.getProveedorIdWeb()));
         return new Response(ingredientesDetailWeb);
+    }
 
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{id}")
+    public void deleteIngrediente(@PathVariable("id") int ingredientesId){
+        ingredientesService.deleteIngrediente(ingredientesId);
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PutMapping("/{id}")
+    public Response updateIngredienteById(@PathVariable("id") int ingredientesId, @RequestBody IngredientesUpdateWeb ingredientesUpdateWeb){
+        Ingredientes ingredientes = IngredientesMapper.mapper.toIngredientes(ingredientesUpdateWeb);
+        ingredientes.setIngredientesId(ingredientesId);
+        ingredientesService.updateIngredienteById(ingredientes, ingredientesUpdateWeb.getProveedorIdWeb());
+        IngredientesDetailWeb ingredientesDetailWeb = IngredientesMapper.mapper.toIngredientesDetailWeb(ingredientes);
+        return new Response(ingredientesDetailWeb);
     }
 }
