@@ -27,4 +27,10 @@ public class IngredientesRepositoryImpl implements IngredientesRepository {
         IngredientesEntity ingredientesEntity = ingredientesDAO.findById(ingredientesId).orElse(null);
         return IngredientesMapper.mapper.toIngredientes(ingredientesEntity);
     }
+
+    @Override
+    public Ingredientes insertIngrediente(Ingredientes ingredientes) {
+        IngredientesEntity ingredientesEntity = ingredientesDAO.save(IngredientesMapper.mapper.toIngredientesEntity(ingredientes));
+        return IngredientesMapper.mapper.toIngredientes(ingredientesEntity);
+    }
 }

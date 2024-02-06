@@ -1,7 +1,9 @@
 package com.fpmislata.KebabJorge.mapper;
 
+import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesCreateWeb;
 import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesDetailWeb;
 import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesListWeb;
+import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesUpdateWeb;
 import com.fpmislata.KebabJorge.controller.model.proveedor.ProveedorDetailWeb;
 import com.fpmislata.KebabJorge.domain.entity.Ingredientes;
 import com.fpmislata.KebabJorge.domain.entity.Proveedor;
@@ -43,4 +45,9 @@ public interface IngredientesMapper {
     }
 
     IngredientesEntity toIngredientesEntity (Ingredientes ingredientes);
+
+    @Mapping(target = "proveedor", ignore = true)
+    Ingredientes toIngredientes (IngredientesUpdateWeb ingredientesUpdateWeb);
+    @Mapping(target = "proveedor", ignore = true)
+    Ingredientes toIngredientes (IngredientesCreateWeb ingredientesCreateWeb);
 }

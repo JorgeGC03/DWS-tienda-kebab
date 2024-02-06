@@ -1,5 +1,7 @@
 package com.fpmislata.KebabJorge.controller;
 
+import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesCreateWeb;
+import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesDetailWeb;
 import com.fpmislata.KebabJorge.controller.model.ingredientes.IngredientesListWeb;
 import com.fpmislata.KebabJorge.domain.entity.Ingredientes;
 import com.fpmislata.KebabJorge.domain.service.IngredientesService;
@@ -40,4 +42,11 @@ public class IngredientesController {
         return new Response( IngredientesMapper.mapper.toIngredientesDetailWeb(ingredientesService.findById(ingredientesId)));
     }
 
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("")
+    public Response insertIngrediente(@RequestBody IngredientesCreateWeb ingredientesCreateWeb){
+        IngredientesDetailWeb ingredientesDetailWeb = IngredientesMapper.mapper.toIngredientesDetailWeb(ingredientesService.insertIngrediente(IngredientesMapper.mapper.toIngredientes(ingredientesCreateWeb), ingredientesCreateWeb.getProveedorIdWeb()));
+        return new Response(ingredientesDetailWeb);
+
+    }
 }
