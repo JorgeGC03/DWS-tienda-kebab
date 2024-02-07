@@ -2,6 +2,9 @@ package com.fpmislata.KebabJorge.domain.entity;
 
 import java.util.List;
 
+import com.fpmislata.KebabJorge.validaciones.ValidPrice;
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.Min;
 import lombok.*;
 
 @Getter
@@ -15,6 +18,7 @@ public class Kebab {
     private int kebabId;
     private String nombre;
     private String descripcion;
+    @ValidPrice
     private double precio;
     private List<Ingredientes> Ingredientes;
 
