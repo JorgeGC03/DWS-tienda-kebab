@@ -1,5 +1,7 @@
 package com.fpmislata.KebabJorge.domain.entity;
 
+import com.fpmislata.KebabJorge.validaciones.ValidDescription;
+import com.fpmislata.KebabJorge.validaciones.ValidName;
 import lombok.*;
 
 @Getter
@@ -12,7 +14,10 @@ import lombok.*;
 public class Ingredientes {
 
     private int ingredientesId;
-    private String nombreIngrediente, descripcion;
+    @ValidName
+    private String nombreIngrediente;
+    @ValidDescription
+    private String descripcion;
     private Proveedor proveedor;
 
 
