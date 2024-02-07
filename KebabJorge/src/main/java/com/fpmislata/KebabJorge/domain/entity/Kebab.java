@@ -7,6 +7,7 @@ import com.fpmislata.KebabJorge.validaciones.ValidName;
 import com.fpmislata.KebabJorge.validaciones.ValidPrice;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -19,10 +20,13 @@ public class Kebab {
 
     private int kebabId;
     @ValidName
+    @NotBlank(message = "El nombre no puede estar en blanco")
     private String nombre;
     @ValidDescription
+    @NotBlank(message = "La descripcion no puede pasar los 100 caracteres ni estar en blanco")
     private String descripcion;
     @ValidPrice
+    @NotBlank(message = "El precio no puede ser menor que 5 ni estar en blanco")
     private double precio;
     private List<Ingredientes> Ingredientes;
 
