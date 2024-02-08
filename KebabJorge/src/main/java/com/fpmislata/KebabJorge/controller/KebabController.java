@@ -20,6 +20,8 @@ import com.fpmislata.KebabJorge.domain.service.KebabService;
 import com.fpmislata.KebabJorge.http_response.Response;
 import com.fpmislata.KebabJorge.mapper.KebabMapper;
 
+import static com.fpmislata.KebabJorge.validaciones.Validation.validate;
+
 @RequestMapping(KebabController.KEBABS)
 @RestController
 public class KebabController {
@@ -53,6 +55,7 @@ public class KebabController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
     public Response insert(@RequestBody KebabCreateWEB kebabCreateWEB){
+
         KebabDetailWeb kebabDetailWeb = KebabMapper.mapper.toKebabDetailWeb(kebabService.insert(KebabMapper.mapper.toKebab(kebabCreateWEB), kebabCreateWEB.getIngredientesIdWeb()));
         return new Response(kebabDetailWeb);
     }

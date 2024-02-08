@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.fpmislata.KebabJorge.validaciones.Validation.validate;
+
 @Service
 public class ProveedorServiceImpl implements ProveedorService {
 
@@ -29,6 +31,7 @@ public class ProveedorServiceImpl implements ProveedorService {
     @Override
     @Transactional
     public Proveedor insertProveedor(Proveedor proveedor){
+        validate(proveedor);
         return proveedorRepository.insertProveedor(proveedor);
     }
 
@@ -40,6 +43,7 @@ public class ProveedorServiceImpl implements ProveedorService {
 
     @Override
     public Proveedor updateProveedorById(Proveedor proveedor, int id) {
+        validate(proveedor);
         proveedor.setProveedorId(id);
         return proveedorRepository.updateProveedorById(proveedor);
     }

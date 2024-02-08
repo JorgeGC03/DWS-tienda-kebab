@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.fpmislata.KebabJorge.validaciones.Validation.validate;
+
 @RequestMapping(ProveedorController.PROVEEDORES)
 @RestController
 public class ProveedorController {
@@ -46,6 +48,7 @@ public class ProveedorController {
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("")
     public Response insertProveedor(@RequestBody ProveedorCreateWeb proveedorCreateWeb) {
+        validate(proveedorCreateWeb);
         return new Response(proveedorService.insertProveedor(ProveedorMapper.mapper.toProveedor(proveedorCreateWeb)));
     }
 

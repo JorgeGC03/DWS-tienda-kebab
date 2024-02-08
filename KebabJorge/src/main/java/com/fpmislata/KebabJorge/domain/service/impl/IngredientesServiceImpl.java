@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.fpmislata.KebabJorge.validaciones.Validation.validate;
+
 @Service
 public class IngredientesServiceImpl implements IngredientesService {
 
@@ -34,6 +36,7 @@ public class IngredientesServiceImpl implements IngredientesService {
     @Transactional
     @Override
     public Ingredientes insertIngrediente(Ingredientes ingredientes, int proveedorId) {
+        validate(ingredientes);
         Proveedor proveedor = proveedorRepository.findById(proveedorId);
         ingredientes.setProveedor(proveedor);
         return ingredientesRepository.insertIngrediente(ingredientes);
@@ -47,6 +50,7 @@ public class IngredientesServiceImpl implements IngredientesService {
     @Transactional
     @Override
     public Ingredientes updateIngredienteById(Ingredientes ingredientes, int proveedorId) {
+        validate(ingredientes);
         Proveedor proveedor = proveedorRepository.findById(proveedorId);
         ingredientes.setProveedor(proveedor);
         return ingredientesRepository.updateingredienteById(ingredientes);

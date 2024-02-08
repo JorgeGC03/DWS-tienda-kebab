@@ -11,6 +11,8 @@ import com.fpmislata.KebabJorge.domain.entity.Kebab;
 import com.fpmislata.KebabJorge.domain.repository.KebabRepository;
 import com.fpmislata.KebabJorge.domain.service.KebabService;
 
+import static com.fpmislata.KebabJorge.validaciones.Validation.validate;
+
 @Service
 public class KebabServiceImpl implements KebabService{
 
@@ -34,6 +36,7 @@ public class KebabServiceImpl implements KebabService{
 
     @Override
     public Kebab insert(Kebab kebab, List<Integer> ingredientesId) {
+        validate(kebab);
         List<Ingredientes> ingredientes = ingredientesId.stream()
                 .map(ingredienteId -> ingredientesRepository.findById(ingredienteId))
                 .toList();
@@ -49,6 +52,7 @@ public class KebabServiceImpl implements KebabService{
 
     @Override
     public Kebab updateKebabById(Kebab kebab, List<Integer> ingredientesId){
+        validate(kebab);
         List<Ingredientes> ingredientes =
                 ingredientesId.stream()
                         .map(id -> ingredientesRepository.findById(id))
